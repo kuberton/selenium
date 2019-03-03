@@ -14,10 +14,11 @@ namespace Selenium
 
             // check home page has products
             driver.Navigate().GoToUrl("https://kuberton.mac-blog.org.ua/");
-            Assert.True(driver.FindElementsByCssSelector(".card").Count > 0, "products on home page");
+            var products = driver.FindElementsByCssSelector(".selen-product-item");
+            Assert.True(products.Count > 0, "products on home page");
 
             // go to first product
-            driver.FindElementsByCssSelector(".card")[0].FindElement(By.CssSelector("a")).Click();
+            products[0].FindElement(By.CssSelector("a")).Click();
 
             // add it to cart
             driver.FindElementByCssSelector("button").Click();
@@ -25,7 +26,7 @@ namespace Selenium
             driver.Navigate().GoToUrl("https://kuberton.mac-blog.org.ua/");
 
             // go to second product
-            driver.FindElementsByCssSelector(".card")[1].FindElement(By.CssSelector("a")).Click();
+            products[1].FindElement(By.CssSelector("a")).Click();
 
             // add it to cart
             driver.FindElementByCssSelector("button").Click();
